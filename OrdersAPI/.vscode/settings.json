@@ -1,0 +1,18 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1433,
+            "askForPassword": true,
+            "driver": "MSSQL",
+            "name": "dsordersproj-server.database.windows.net",
+            "connectString": "Server=tcp:dsordersproj-server.database.windows.net,1433;Initial Catalog=dsordersproj-database;Persist Security Info=False;User ID=dsordersproj-server-admin;Password=15DS3215ds32!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        }
+    ]
+}
