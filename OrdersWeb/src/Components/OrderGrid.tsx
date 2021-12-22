@@ -13,7 +13,7 @@ const theme = createTheme();
 
 const useStyles = makeStyles({
     headerClass: {
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: 'primary'
     },
 })
 
@@ -56,8 +56,9 @@ export default function OrderGrid(props: IProps){
 
     return ( 
         <div>
-        <div style={{display: 'flex', width: '100%', justifyContent: 'space-between', marginBottom: 10, alignItems: 'center'}}>
-                <div style={{display: 'flex', width: 320, justifyContent: 'space-between'}}>
+        <div style={{display: 'flex', width: '100%', height: '60px', justifyContent: 'space-between', marginBottom: 10, 
+            alignItems: 'center', boxShadow: '0px 1px 4px #626262', padding: '0px 20px', boxSizing: 'border-box'}}>
+                <div style={{display: 'flex', width: 275, justifyContent: 'space-between'}}>
                     <OrderDialog/>
                     <OrderDelete {...{ ordersValues, ordersToDelete }}/>
                 </div>
@@ -66,6 +67,7 @@ export default function OrderGrid(props: IProps){
                 variant="outlined"
                 type="text"
                 onChange={handleChange}
+                size="small"
             />
         </div>
         <div>
