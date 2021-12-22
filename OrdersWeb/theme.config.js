@@ -1,6 +1,6 @@
 export const themeConfig = {
     "typography": {
-        "fontFamily": "Kufam",
+        "fontFamily": "Roboto",
     },
     "palette": {
         "text": {
@@ -10,14 +10,14 @@ export const themeConfig = {
             "hint": "rgba(0, 0, 0, 0.38)"
         },
         "secondary": {
-            "main": "#50d292",
-            "light": "#87ffc3",
-            "dark": "#00a064",
+            "main": "#0571dd",
+            "light": "#2286e9",
+            "dark": "#1760a8",
             "contrastText": "#ffffff"
         },
         "primary": {
-            "main": "#282830",
-            "light": "#505059",
+            "main": "#626262",
+            "light": "#888888",
             "dark": "#000007",
             "contrastText": "#ffffff"
         }

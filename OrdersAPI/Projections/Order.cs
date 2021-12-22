@@ -19,9 +19,7 @@ namespace API.Projections
         }
 
         public int? OrderID { get; set; }
-        [Required]
         public string OrderType { get; set; }
-        [Required]
         public string CustomerName { get; set; }
         public string CreatedDate { get; set; }
         public string CreatedByUserName { get; set; }

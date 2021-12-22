@@ -17,16 +17,16 @@ export interface OrderFormValues {
 
 export default function OrderDialog() {
     const [open, setOpen] = React.useState(false);
-    const [formValues, setFormValues] = React.useState<OrderFormValues>({createdDate: new Date().toISOString()});
+    const [formValues, setFormValues] = React.useState<OrderFormValues>({ createdDate: new Date().toISOString() });
     const queryCache = useQueryClient();
-    
+
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
-        setFormValues({createdDate: new Date().toISOString()});
+        setFormValues({ createdDate: new Date().toISOString() });
     };
 
     const handleSubmit = () => {
@@ -58,8 +58,8 @@ export default function OrderDialog() {
                     </div>
                 </DialogContent>
                 <DialogActions >
-                    <Button variant='contained' color='primary' onClick={handleSubmit}>Submit</Button>
-                    <Button variant='contained' color='primary' onClick={handleClose}>Cancel</Button>
+                    <Button variant='outlined' color='primary' onClick={handleClose}>Cancel</Button>
+                    <Button disabled={formValues.createdByUserName === undefined || formValues.customerName === undefined || formValues.orderType === undefined} variant='contained' color='primary' onClick={handleSubmit}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>

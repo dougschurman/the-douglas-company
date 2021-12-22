@@ -1,6 +1,4 @@
 import * as React from 'react';
-import OrderDialog from "./OrderDialog";
-import OrderDelete from "./OrderDelete";
 import OrderGrid from "./OrderGrid";
 import axios from "axios";
 import 'regenerator-runtime/runtime';
@@ -32,11 +30,6 @@ export default function OrderPage(){
 
     return(
         <>
-            <div style={{display: 'flex', width: 325, justifyContent: 'space-between', marginBottom: 10}}>
-                <OrderDialog/>
-                <OrderDelete {...{ ordersValues, ordersToDelete }}/>
-            </div>
-            
             <OrderGrid ordersValues={ordersValues || []} {...{ ordersToDelete, setOrdersToDelete, searchValue, setSearchValue, refetchOrders }} />
         </>
     );

@@ -5,11 +5,16 @@ import * as React from 'react';
 import * as moment from 'moment';
 import { makeStyles } from '@mui/styles';
 import { useDebouncedCallback } from 'use-debounce';
+import { createTheme } from '@mui/material/styles';
+import OrderDialog from './OrderDialog';
+import OrderDelete from './OrderDelete';
+
+const theme = createTheme();
 
 const useStyles = makeStyles({
     headerClass: {
-        backgroundColor: '#145EA8'
-    }
+        backgroundColor: theme.palette.primary.main
+    },
 })
 
 interface IProps{
@@ -42,7 +47,7 @@ export default function OrderGrid(props: IProps){
         async () => {
             refetchOrders();
         },
-        500,
+        300,
     );
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setSearchValue(e.target.value);
@@ -50,14 +55,18 @@ export default function OrderGrid(props: IProps){
     }
 
     return ( 
-        <>
         <div>
-        <TextField
-            label="Search"
-            variant="outlined"
-            type="text"
-            onChange={handleChange}
-         />
+        <div style={{display: 'flex', width: '100%', justifyContent: 'space-between', marginBottom: 10, alignItems: 'center'}}>
+                <div style={{display: 'flex', width: 320, justifyContent: 'space-between'}}>
+                    <OrderDialog/>
+                    <OrderDelete {...{ ordersValues, ordersToDelete }}/>
+                </div>
+            <TextField
+                label="Search"
+                variant="outlined"
+                type="text"
+                onChange={handleChange}
+            />
         </div>
         <div>
             <DataGrid
@@ -79,6 +88,6 @@ export default function OrderGrid(props: IProps){
                 }}
             />
         </div>
-        </>
+        </div>
     );
 }
