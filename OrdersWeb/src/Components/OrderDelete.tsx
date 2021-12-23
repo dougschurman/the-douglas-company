@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem } from '@mui/material';
+import { createTheme, Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import React = require('react');
@@ -8,6 +8,8 @@ import { useQueryClient } from "react-query";
 interface IProps{
     ordersToDelete: number[];
 }
+
+const theme = createTheme();
 
 export default function OrderDelete(props: IProps){
     const { ordersToDelete } = props;
@@ -35,17 +37,17 @@ export default function OrderDelete(props: IProps){
 
     return (
         <div>
-            <Button disabled={props.ordersToDelete?.length === 0} variant="contained" color='primary' onClick={handleClickOpen}>
-                Delete Orders
+            <Button disabled={props.ordersToDelete?.length === 0} variant="contained" color="secondary" onClick={handleClickOpen}>
+                <Typography>Delete Orders</Typography>
             </Button>
             <Dialog open={open} maxWidth="sm" fullWidth>
-                <DialogTitle>Delete Orders?</DialogTitle>
+                <DialogTitle><Typography>Delete Orders?</Typography></DialogTitle>
                 <DialogContent>
                     <List style={{maxHeight: '200px', overflow: 'auto'}}>
                         {ordersToDelete.map((order) => {
                             return (
                                 <ListItem>
-                                    {order}
+                                    <Typography sx={{color: theme.palette.primary.main}}>{order}</Typography>
                                 </ListItem>
                             );
                         })}

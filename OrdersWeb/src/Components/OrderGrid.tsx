@@ -8,13 +8,17 @@ import { useDebouncedCallback } from 'use-debounce';
 import { createTheme } from '@mui/material/styles';
 import OrderDialog from './OrderDialog';
 import OrderDelete from './OrderDelete';
+import { Typography } from '@mui/material';
 
 const theme = createTheme();
 
 const useStyles = makeStyles({
     headerClass: {
-        backgroundColor: 'primary'
+        backgroundColor: theme.palette.primary.main
     },
+    headerLabelClass: {
+        color: '#ffffff'
+    }
 })
 
 interface IProps{
@@ -56,9 +60,12 @@ export default function OrderGrid(props: IProps){
 
     return ( 
         <div>
-        <div style={{display: 'flex', width: '100%', height: '60px', justifyContent: 'space-between', marginBottom: 10, 
-            alignItems: 'center', boxShadow: '0px 1px 4px #626262', padding: '0px 20px', boxSizing: 'border-box'}}>
-                <div style={{display: 'flex', width: 275, justifyContent: 'space-between'}}>
+            <div style={{ boxShadow: '0px 1px 3px #626262' }}>
+                <Typography sx={{color: theme.palette.primary.main, fontSize: '32', display: 'flex', fontWeight: 'bold', marginLeft: '30px'}}>Orders</Typography>
+            </div>
+        <div style={{display: 'flex', width: '100%', height: '60px', justifyContent: 'space-between', 
+            alignItems: 'center', padding: '0px 20px', boxSizing: 'border-box'}}>
+                <div style={{display: 'flex', width: 320, justifyContent: 'space-between'}}>
                     <OrderDialog/>
                     <OrderDelete {...{ ordersValues, ordersToDelete }}/>
                 </div>
@@ -75,8 +82,8 @@ export default function OrderGrid(props: IProps){
                 getRowId={(row) => row.orderID}
                 rows={ordersValues.map((o) => ({ ...o, createdDate: moment(o.createdDate).format("MM/DD/YYYY")}))}
                 columns={columns}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
+                pageSize={12}
+                rowsPerPageOptions={[12]}
                 checkboxSelection={true}
                 onSelectionModelChange={handleSelection} 
                 autoHeight
@@ -86,7 +93,8 @@ export default function OrderGrid(props: IProps){
                     </GridOverlay>
                 )}}
                 classes={{
-                    columnHeaderWrapper: classes.headerClass
+                    columnHeaderWrapper: classes.headerClass,
+                    columnHeaderTitle: classes.headerLabelClass
                 }}
             />
         </div>

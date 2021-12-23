@@ -7,6 +7,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import OrderForm from "./OrderForm";
 import axios from "axios";
 import { useQueryClient } from "react-query";
+import { createTheme } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
 export interface OrderFormValues {
     customerName?: string;
@@ -14,6 +16,8 @@ export interface OrderFormValues {
     createdByUserName?: string;
     createdDate?: string;
 }
+
+const theme = createTheme();
 
 export default function OrderDialog() {
     const [open, setOpen] = React.useState(false);
@@ -47,18 +51,18 @@ export default function OrderDialog() {
 
     return (
         <div>
-            <Button variant="contained" color='primary' onClick={handleClickOpen}>
-                Create Order
+            <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+            <Typography>Create Order</Typography>
             </Button>
             <Dialog open={open} maxWidth="md" fullWidth>
-                <DialogTitle>Create an Order: </DialogTitle>
+                <DialogTitle><Typography>Create an Order: </Typography></DialogTitle>
                 <DialogContent>
                     <div>
                         <OrderForm {...{ formValues, setFormValues }} />
                     </div>
                 </DialogContent>
                 <DialogActions >
-                    <Button variant='outlined' color='primary' onClick={handleClose}>Cancel</Button>
+                    <Button variant='outlined' color='primary' onClick={handleClose}><Typography>Cancel</Typography></Button>
                     <Button disabled={formValues.createdByUserName === undefined || formValues.customerName === undefined || formValues.orderType === undefined} variant='contained' color='primary' onClick={handleSubmit}>Submit</Button>
                 </DialogActions>
             </Dialog>

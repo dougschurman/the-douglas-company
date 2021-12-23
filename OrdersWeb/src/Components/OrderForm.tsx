@@ -21,6 +21,7 @@ export default function OrderForm(props: IProps) {
                onChange={(e) => setFormValues({ ...formValues, customerName: e.target.value })}
                fullWidth
                required
+               sx={{ marginTop: '20px'}}
             />
          </Grid>
          <Grid item xs={12}>
@@ -33,6 +34,7 @@ export default function OrderForm(props: IProps) {
                }}
                fullWidth
                required
+               sx={{ marginTop: '20px'}}
             >
                <MenuItem key="standard" value="Standard">
                   Standard
@@ -61,6 +63,7 @@ export default function OrderForm(props: IProps) {
                onChange={(e) => setFormValues({ ...formValues, createdByUserName: e.target.value })}
                fullWidth
                required
+               sx={{ marginTop: '20px'}}
             />
          </Grid>
       </Grid>
