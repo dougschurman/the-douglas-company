@@ -51,7 +51,7 @@ export default function OrderDialog() {
 
     return (
         <div>
-            <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+            <Button variant="contained" sx={{ bgcolor: 'secondary.main', color: 'secondary.contrastText', ':hover': { backgroundColor: 'secondary.dark'}}} onClick={handleClickOpen}>
             <Typography>Create Order</Typography>
             </Button>
             <Dialog open={open} maxWidth="md" fullWidth>
@@ -62,8 +62,9 @@ export default function OrderDialog() {
                     </div>
                 </DialogContent>
                 <DialogActions >
-                    <Button variant='outlined' color='primary' onClick={handleClose}><Typography>Cancel</Typography></Button>
-                    <Button disabled={formValues.createdByUserName === undefined || formValues.customerName === undefined || formValues.orderType === undefined} variant='contained' color='primary' onClick={handleSubmit}>Submit</Button>
+                    <Button variant='contained' sx={{ bgcolor: 'secondary.main', color: 'secondary.constrastText', ':hover': { backgroundColor: 'secondary.dark'}}} onClick={handleClose}><Typography>Cancel</Typography></Button>
+                    <Button disabled={formValues.createdByUserName === undefined || formValues.customerName === undefined || formValues.orderType === undefined} 
+                        variant='contained' sx={{ bgcolor: 'secondary.main', color: 'secondary.contrastText', ':hover': { backgroundColor: 'secondary.dark'}}} onClick={handleSubmit}><Typography>Submit</Typography></Button>
                 </DialogActions>
             </Dialog>
         </div>

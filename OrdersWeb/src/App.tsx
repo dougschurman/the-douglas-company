@@ -5,9 +5,11 @@ import { CssBaseline } from "@mui/material";
 import { themeConfig } from "../theme.config";
 
 const muiPalette = themeConfig.palette;
+const muiTypography = themeConfig.typography;
 
 const theme = createTheme({
-  palette: muiPalette
+  palette: muiPalette,
+  typography: muiTypography
 });
 
 function App() {

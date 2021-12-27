@@ -3,7 +3,6 @@ import { orderTypes } from "./OrderPage";
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import * as moment from 'moment';
-import { makeStyles } from '@mui/styles';
 import { useDebouncedCallback } from 'use-debounce';
 import { createTheme } from '@mui/material/styles';
 import OrderDialog from './OrderDialog';
@@ -11,15 +10,6 @@ import OrderDelete from './OrderDelete';
 import { Typography } from '@mui/material';
 
 const theme = createTheme();
-
-const useStyles = makeStyles({
-    headerClass: {
-        backgroundColor: theme.palette.primary.main
-    },
-    headerLabelClass: {
-        color: '#ffffff'
-    }
-})
 
 interface IProps{
     ordersValues: orderTypes[];
@@ -39,7 +29,6 @@ interface IProps{
  ];
 
 export default function OrderGrid(props: IProps){
-    const classes = useStyles();
     const { ordersValues, ordersToDelete, setOrdersToDelete, searchValue, setSearchValue, refetchOrders } = props;
 
     const handleSelection = (selectionModel: GridSelectionModel, details: GridCallbackDetails) => {
@@ -63,7 +52,7 @@ export default function OrderGrid(props: IProps){
             <div style={{ boxShadow: '0px 1px 3px #626262' }}>
                 <Typography sx={{color: theme.palette.primary.main, fontSize: '32', display: 'flex', fontWeight: 'bold', marginLeft: '30px'}}>Orders</Typography>
             </div>
-        <div style={{display: 'flex', width: '100%', height: '60px', justifyContent: 'space-between', 
+        <div style={{ display: 'flex', width: '100%', height: '60px', justifyContent: 'space-between', 
             alignItems: 'center', padding: '0px 20px', boxSizing: 'border-box'}}>
                 <div style={{display: 'flex', width: 320, justifyContent: 'space-between'}}>
                     <OrderDialog/>
@@ -75,6 +64,7 @@ export default function OrderGrid(props: IProps){
                 type="text"
                 onChange={handleChange}
                 size="small"
+                color='secondary'
             />
         </div>
         <div>
@@ -84,17 +74,26 @@ export default function OrderGrid(props: IProps){
                 columns={columns}
                 pageSize={12}
                 rowsPerPageOptions={[12]}
-                checkboxSelection={true}
+                checkboxSelection
                 onSelectionModelChange={handleSelection} 
                 autoHeight
                 components={{ NoRowsOverlay: () => (
                     <GridOverlay>
-                        <div>No Results</div>
+                        <Typography>No Results</Typography>
                     </GridOverlay>
                 )}}
-                classes={{
-                    columnHeaderWrapper: classes.headerClass,
-                    columnHeaderTitle: classes.headerLabelClass
+                sx={{ '& .MuiCheckbox-root.Mui-checked': {
+                        color: 'gray'
+                    },
+                    '& .MuiDataGrid-columnHeaders': {
+                        backgroundColor: 'secondary.main'
+                    },
+                    '& .MuiDataGrid-columnHeaderTitle': {
+                        color: 'secondary.contrastText'
+                    },
+                    '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+                        outline: 'none',
+                    },
                 }}
             />
         </div>

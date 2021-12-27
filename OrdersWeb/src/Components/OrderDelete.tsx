@@ -37,7 +37,7 @@ export default function OrderDelete(props: IProps){
 
     return (
         <div>
-            <Button disabled={props.ordersToDelete?.length === 0} variant="contained" color="secondary" onClick={handleClickOpen}>
+            <Button disabled={props.ordersToDelete?.length === 0} variant="contained" sx={{ bgcolor: 'secondary.main', color: 'secondary.constrastText', ':hover': { backgroundColor: 'secondary.dark'}}} onClick={handleClickOpen}>
                 <Typography>Delete Orders</Typography>
             </Button>
             <Dialog open={open} maxWidth="sm" fullWidth>
@@ -47,15 +47,15 @@ export default function OrderDelete(props: IProps){
                         {ordersToDelete.map((order) => {
                             return (
                                 <ListItem>
-                                    <Typography sx={{color: theme.palette.primary.main}}>{order}</Typography>
+                                    <Typography color='primary.main'>{order}</Typography>
                                 </ListItem>
                             );
                         })}
                     </List>
                 </DialogContent>
                 <DialogActions >
-                    <Button variant='outlined' color='primary' onClick={handleClose}>Cancel</Button>
-                    <Button variant='contained' color='primary' onClick={handleSubmit}>Confirm</Button>
+                    <Button variant='contained' sx={{ bgcolor: 'secondary.main', color: 'secondary.constrastText', ':hover': { backgroundColor: 'secondary.dark'}}} onClick={handleClose}><Typography>Cancel</Typography></Button>
+                    <Button variant='contained' sx={{ bgcolor: 'secondary.main', color: 'secondary.constrastText', ':hover': { backgroundColor: 'secondary.dark'}}} onClick={handleSubmit}><Typography>Confirm</Typography></Button>
                 </DialogActions>
             </Dialog>
         </div>
