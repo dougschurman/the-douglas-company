@@ -1,12 +1,12 @@
 import * as ReactDOM from "react-dom";
-import App from './App';
+import App from "./App";
 import {
   createTheme,
   responsiveFontSizes,
   ThemeProvider,
 } from "@mui/material/styles";
 import { themeConfig } from "../theme.config";
-
+import { BrowserRouter } from "react-router-dom";
 
 const muiPalette = themeConfig.palette;
 const muiTypography = themeConfig.typography;
@@ -19,9 +19,10 @@ const theme = responsiveFontSizes(
 );
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
       <App />
-  </ThemeProvider>,
-  document.getElementById('mountNode')
+    </ThemeProvider>
+  </BrowserRouter>,
+  document.getElementById("mountNode")
 );
-
