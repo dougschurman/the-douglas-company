@@ -25,9 +25,9 @@ namespace API.Controllers
             // rewrite to use IDataProvider using dependency injection
             var data = _dataProvider.GetData();
             return Ok(data); //returning JSON
-            
+
         }
-        
+
 
         // Add a Search endpoint
         [HttpGet]//("{id}")
@@ -35,11 +35,19 @@ namespace API.Controllers
         {
             var data = _dataProvider.FindData(searchValue);
 
-            if(data == null)
+            if (data == null)
             {
                 return BadRequest("No Data Found");
             }
-            
+
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("GetGraphData")]
+        public IActionResult GetGraphData()
+        {
+            var data = _dataProvider.GetGraphData();
             return Ok(data);
         }
 
@@ -49,7 +57,7 @@ namespace API.Controllers
         {
             try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     var data = _dataProvider.CreateOrder(order);
                     return Ok(data);
@@ -59,24 +67,27 @@ namespace API.Controllers
                     return BadRequest(ModelState.ValidationState);
                 }
             }
-            catch(DbUpdateException)
+            catch (DbUpdateException)
             {
                 return BadRequest("Inputs were not correct");
             }
-            
+
         }
 
         [HttpDelete]
         // Add a Delete endpoint
         public IActionResult Delete([FromBody] List<int> OrderIDs)
         {
-            try{
+            try
+            {
                 var response = _dataProvider.DeleteOrders(OrderIDs);
-                if(response == 0){
+                if (response == 0)
+                {
                     return BadRequest("No data was deleted");
                 }
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
             return Ok();

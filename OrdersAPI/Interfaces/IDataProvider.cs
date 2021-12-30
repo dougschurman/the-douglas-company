@@ -9,6 +9,8 @@ namespace API.Interfaces
 
         public IEnumerable<Projections.Order> FindData(string searchValue);
 
+        public IEnumerable<Projections.OrderCount> GetGraphData();
+
         public Projections.Order CreateOrder(Order order); // fill in inputs
 
         public int DeleteOrders(List<int> OrderIDs);

@@ -22,7 +22,7 @@ export default function OrderToolbar(props: IProps) {
   return (
     <div style={{ marginBottom: "8px" }}>
       <AppBar position="static" color="secondary" elevation={2}>
-        <Toolbar>
+        <Toolbar variant="dense">
           <div
             style={{
               display: "flex",
