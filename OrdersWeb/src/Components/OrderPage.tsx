@@ -21,9 +21,9 @@ export default function OrderPage() {
     async () => {
       const response = searchValue
         ? await axios.get(
-            `https://localhost:5001/Order?searchValue=${searchValue}`
+            `http://www.dougschurman.com/Order?searchValue=${searchValue}`
           )
-        : await axios.get("https://localhost:5001/Order/GetOrders");
+        : await axios.get("http://www.dougschurman.com/Order/GetOrders");
       return response.data || ([] as orderTypes[]);
     },
     {

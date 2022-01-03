@@ -39,7 +39,7 @@ export default function OrderDialog() {
     var dateObj = new Date();
 
     axios
-      .post("https://localhost:5001/Order", formValues)
+      .post("http://www.dougschurman.com/Order", formValues)
       .then((response: any) => {
         console.log(formValues);
         queryCache.invalidateQueries("orders");

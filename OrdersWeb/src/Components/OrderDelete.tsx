@@ -34,7 +34,7 @@ export default function OrderDelete(props: IProps) {
 
   const handleSubmit = () => {
     axios
-      .delete("https://localhost:5001/Order", { data: ordersToDelete })
+      .delete("http://www.dougschurman.com/Order", { data: ordersToDelete })
       .then((response: any) => {
         queryCache.invalidateQueries("orders");
         //when done

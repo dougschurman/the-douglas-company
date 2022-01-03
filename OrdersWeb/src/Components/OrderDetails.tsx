@@ -24,7 +24,9 @@ export default function OrderDetails() {
   const [graphData, setGraphData] = useState<graphTypes[]>([]);
 
   const getGraphData = async () => {
-    const response = await axios("https://localhost:5001/Order/GetGraphData");
+    const response = await axios(
+      "http://www.dougschurman.com/Order/GetGraphData"
+    );
     setGraphData(response.data);
   };
 
