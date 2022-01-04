@@ -8,7 +8,7 @@ import OrderForm from "./OrderForm";
 import axios from "axios";
 import { useQueryClient } from "react-query";
 import { createTheme } from "@mui/material/styles";
-import { Typography, useMediaQuery } from "@mui/material";
+import { Tooltip, Typography, useMediaQuery } from "@mui/material";
 import { APIURL } from "../url";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
@@ -65,7 +65,13 @@ export default function OrderDialog() {
         }}
         onClick={handleClickOpen}
       >
-        {!isMobile ? <Typography>Create Order</Typography> : <AddBoxIcon />}
+        {!isMobile ? (
+          <Typography>Create Order</Typography>
+        ) : (
+          <Tooltip title="Create">
+            <AddBoxIcon />
+          </Tooltip>
+        )}
       </Button>
       <Dialog open={open} maxWidth="md" fullWidth>
         <DialogTitle>

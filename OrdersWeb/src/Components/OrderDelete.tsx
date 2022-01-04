@@ -6,6 +6,7 @@ import {
   DialogTitle,
   List,
   ListItem,
+  Tooltip,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -62,7 +63,13 @@ export default function OrderDelete(props: IProps) {
         }}
         onClick={handleClickOpen}
       >
-        {!isMobile ? <Typography>Delete Orders</Typography> : <DeleteIcon />}
+        {!isMobile ? (
+          <Typography>Delete Orders</Typography>
+        ) : (
+          <Tooltip title="Delete">
+            <DeleteIcon />
+          </Tooltip>
+        )}
       </Button>
       <Dialog open={open} maxWidth="sm" fullWidth>
         <DialogTitle>

@@ -8,8 +8,26 @@ interface IProps {
   setOrdersToDelete: (newState: number[]) => void;
 }
 
+export function getColor(type: string) {
+  switch (type) {
+    case "Standard":
+      return "#0571dd";
+    case "PurchaseOrder":
+      return "#59FFA0";
+    case "ReturnOrder":
+      return "#131B23";
+    case "SaleOrder":
+      return "#898980";
+    case "TransferOrder":
+      return "#DAB6FC";
+    default:
+      console.log("How is this possible");
+  }
+}
+
 export default function OrderRow(props: IProps) {
   const { order, ordersToDelete, setOrdersToDelete } = props;
+  const typeColor = getColor(props.order.orderType);
 
   const handleChecking = (order: orderTypes, checked: boolean) => {
     if (checked) {
@@ -21,7 +39,10 @@ export default function OrderRow(props: IProps) {
   };
 
   return (
-    <Paper variant="outlined" sx={{ mb: 1, p: 2 }}>
+    <Paper
+      variant="outlined"
+      sx={{ mb: 1, p: 2, borderLeft: `6px solid ${typeColor}` }}
+    >
       <Grid container alignItems="center">
         <Grid item xs={1}>
           <Checkbox
@@ -37,11 +58,22 @@ export default function OrderRow(props: IProps) {
           <Grid container item xs={12} md={6} justifyContent={"center"}>
             {props.order.customerName}
           </Grid>
-          <Grid container item xs={12} md={6} justifyContent={"center"}>
+          <Grid
+            container
+            item
+            xs={12}
+            md={6}
+            justifyContent={"center"}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          >
             <Chip
               label={props.order.orderType.replace(/([a-z](?=[A-Z]))/g, "$1 ")}
-              color="secondary"
-              sx={{ minWidth: "120px", textAlign: "center" }}
+              sx={{
+                minWidth: "120px",
+                textAlign: "center",
+                backgroundColor: typeColor,
+                color: "#fff",
+              }}
             />
           </Grid>
         </Grid>
