@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
+import { APIURL } from "../url";
 
 interface graphTypes {
   customerName: string;
@@ -24,9 +25,7 @@ export default function OrderDetails() {
   const [graphData, setGraphData] = useState<graphTypes[]>([]);
 
   const getGraphData = async () => {
-    const response = await axios(
-      "http://www.dougschurman.com/Order/GetGraphData"
-    );
+    const response = await axios(`${APIURL}/Order/GetGraphData`);
     setGraphData(response.data);
   };
 

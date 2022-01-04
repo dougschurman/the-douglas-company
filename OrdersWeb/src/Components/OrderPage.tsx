@@ -5,6 +5,7 @@ import "regenerator-runtime/runtime";
 import { useQuery } from "react-query";
 import OrderToolbar from "./OrderToolbar";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import { APIURL } from "../url";
 
 export interface orderTypes {
   orderID?: number;
@@ -20,10 +21,8 @@ export default function OrderPage() {
     ["orders"],
     async () => {
       const response = searchValue
-        ? await axios.get(
-            `http://www.dougschurman.com/Order?searchValue=${searchValue}`
-          )
-        : await axios.get("http://www.dougschurman.com/Order/GetOrders");
+        ? await axios.get(`${APIURL}/Order?searchValue=${searchValue}`)
+        : await axios.get(`${APIURL}/Order/GetOrders`);
       return response.data || ([] as orderTypes[]);
     },
     {

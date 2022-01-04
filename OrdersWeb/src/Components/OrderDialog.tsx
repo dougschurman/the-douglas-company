@@ -8,7 +8,9 @@ import OrderForm from "./OrderForm";
 import axios from "axios";
 import { useQueryClient } from "react-query";
 import { createTheme } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
+import { APIURL } from "../url";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 export interface OrderFormValues {
   customerName?: string;
@@ -25,6 +27,7 @@ export default function OrderDialog() {
     createdDate: new Date().toISOString(),
   });
   const queryCache = useQueryClient();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,7 +42,7 @@ export default function OrderDialog() {
     var dateObj = new Date();
 
     axios
-      .post("http://www.dougschurman.com/Order", formValues)
+      .post(`${APIURL}/Order`, formValues)
       .then((response: any) => {
         console.log(formValues);
         queryCache.invalidateQueries("orders");
@@ -52,7 +55,7 @@ export default function OrderDialog() {
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: "10px" }}>
       <Button
         variant="contained"
         sx={{
@@ -62,7 +65,7 @@ export default function OrderDialog() {
         }}
         onClick={handleClickOpen}
       >
-        <Typography>Create Order</Typography>
+        {!isMobile ? <Typography>Create Order</Typography> : <AddBoxIcon />}
       </Button>
       <Dialog open={open} maxWidth="md" fullWidth>
         <DialogTitle>

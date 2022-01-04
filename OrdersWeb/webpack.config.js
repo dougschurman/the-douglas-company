@@ -44,6 +44,7 @@ module.exports = (env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({
         baseUrl: argv.mode === "development" ? "/" : "/orders/",
+        environment: argv.mode === "development" ? "development" : "production",
         template: "index.ejs",
         version: "1.0.0",
       }),

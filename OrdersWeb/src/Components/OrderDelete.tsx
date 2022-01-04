@@ -7,11 +7,14 @@ import {
   List,
   ListItem,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import React = require("react");
 import { useQueryClient } from "react-query";
+import { APIURL } from "../url";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface IProps {
   ordersToDelete: number[];
@@ -23,6 +26,7 @@ export default function OrderDelete(props: IProps) {
   const { ordersToDelete } = props;
   const queryCache = useQueryClient();
   const [open, setOpen] = React.useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,7 +38,7 @@ export default function OrderDelete(props: IProps) {
 
   const handleSubmit = () => {
     axios
-      .delete("http://www.dougschurman.com/Order", { data: ordersToDelete })
+      .delete(`${APIURL}/Order`, { data: ordersToDelete })
       .then((response: any) => {
         queryCache.invalidateQueries("orders");
         //when done
@@ -58,7 +62,7 @@ export default function OrderDelete(props: IProps) {
         }}
         onClick={handleClickOpen}
       >
-        <Typography>Delete Orders</Typography>
+        {!isMobile ? <Typography>Delete Orders</Typography> : <DeleteIcon />}
       </Button>
       <Dialog open={open} maxWidth="sm" fullWidth>
         <DialogTitle>
