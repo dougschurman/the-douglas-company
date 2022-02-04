@@ -5,3 +5,9 @@ Most challenging project up to this date as I was completely unfamiliar with Typ
 myself with enterprise level practices and clean code, though I have a lot to improve on design and organization wise.
 
 Currently using Docker to containerize the project and push it to Heroku for hosting, but this is still in progress and may change in the future.
+
+Instructions to run locally:
+- appsettings.json file with connection string for database, running the backend will create tables and populate.
+- dotnet restore to install C# packages
+- yarn install to install js packages
+- yarn dev:start to compile front end
