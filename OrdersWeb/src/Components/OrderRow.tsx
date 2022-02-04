@@ -20,8 +20,6 @@ export function getColor(type: string) {
       return "#898980";
     case "TransferOrder":
       return "#DAB6FC";
-    default:
-      console.log("How is this possible");
   }
 }
 
@@ -49,6 +47,7 @@ export default function OrderRow(props: IProps) {
             size="small"
             color="secondary"
             onChange={(e, checked) => handleChecking(order, checked)}
+            checked={ordersToDelete.includes(order.orderID)}
           />
         </Grid>
         <Grid container item xs={1} justifyContent={"center"}>

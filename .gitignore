@@ -33,6 +33,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-OrdersAPI/appsettings.Development.json
+OrdersAPI/appsettings.json
 node_modules/
 OrdersAPI/wwwroot/*
