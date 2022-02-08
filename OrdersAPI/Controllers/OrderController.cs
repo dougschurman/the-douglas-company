@@ -3,6 +3,7 @@ using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace API.Controllers
 {
@@ -20,16 +21,14 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetOrders")]
-        public IActionResult Get()
+        public IActionResult Get(string filterValue)
         {
-            // rewrite to use IDataProvider using dependency injection
-            var data = _dataProvider.GetData();
-            return Ok(data); //returning JSON
+            var data = _dataProvider.GetData(filterValue);
+            return Ok(data);
 
         }
 
 
-        // Add a Search endpoint
         [HttpGet]//("{id}")
         public IActionResult Find(string searchValue)
         {
@@ -52,7 +51,6 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        // Add a Create endpoint
         public IActionResult Create(Projections.Order order)
         {
             try
@@ -75,7 +73,6 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        // Add a Delete endpoint
         public IActionResult Delete([FromBody] List<int> OrderIDs)
         {
             try

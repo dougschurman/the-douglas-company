@@ -1,17 +1,11 @@
-import {
-  DataGrid,
-  GridCallbackDetails,
-  GridColDef,
-  GridOverlay,
-  GridSelectionModel,
-} from "@mui/x-data-grid";
-import { orderTypes } from "./OrderPage";
+import { orderTypes, filterFields } from "./OrderPage";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { createTheme } from "@mui/material/styles";
 import OrderDialog from "./OrderDialog";
 import OrderDelete from "./OrderDelete";
+import Filter from "./Filter";
 import { Container, Typography } from "@mui/material";
 import OrderGrid from "./OrderGrid";
 
@@ -21,9 +15,9 @@ interface IProps {
   ordersValues: orderTypes[];
   ordersToDelete: number[];
   setOrdersToDelete: (newState: number[]) => void;
-  searchValue: string;
   setSearchValue: (newState: string) => void;
   refetchOrders: () => void;
+  setFilterValue: (newState?: filterFields) => void;
 }
 
 export default function OrderHome(props: IProps) {
@@ -31,9 +25,9 @@ export default function OrderHome(props: IProps) {
     ordersValues,
     ordersToDelete,
     setOrdersToDelete,
-    searchValue,
     setSearchValue,
     refetchOrders,
+    setFilterValue
   } = props;
 
   const debounceSearch = useDebouncedCallback(async () => {
@@ -67,6 +61,7 @@ export default function OrderHome(props: IProps) {
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
         >
+          <Filter setFilterValue={setFilterValue}/>
           <OrderDialog />
           <OrderDelete {...{ ordersValues, ordersToDelete }} />
         </div>

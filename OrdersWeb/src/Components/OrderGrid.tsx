@@ -1,7 +1,7 @@
 import { orderTypes } from "./OrderPage";
 import OrderRow from "./OrderRow";
 import makeStyles from "@mui/styles/makeStyles";
-import { createTheme, Grid, Typography, useMediaQuery } from "@mui/material";
+import { createTheme, useMediaQuery } from "@mui/material";
 import Legend from "./Legend";
 
 interface IProps {
@@ -21,7 +21,7 @@ export default function OrderGrid(props: IProps) {
     <>
       {isMobile ? <Legend /> : null}
       <div className={classes.container}>
-        {props.ordersValues.map((row, i) => (
+        {ordersValues.map((row, i) => (
           <OrderRow
             key={i}
             order={row}

@@ -15,14 +15,21 @@ export interface orderTypes {
   createdDate?: string;
 }
 
+export enum filterFields {
+  desOrderID = "orderID_desc",
+  ascCreatedDate = "createdDate",
+  descCreatedDate = "createdDate_desc"
+}
+
 export default function OrderPage() {
   const [searchValue, setSearchValue] = React.useState<string>(null);
+  const [filterValue, setFilterValue] = React.useState<filterFields | undefined>(undefined);
   const { data: ordersValues, refetch } = useQuery(
-    ["orders"],
+    ["orders", filterValue],
     async () => {
       const response = searchValue
         ? await axios.get(`${APIURL}/Order?searchValue=${searchValue}`)
-        : await axios.get(`${APIURL}/Order/GetOrders`);
+        : await axios.get(`${APIURL}/Order/GetOrders?filterValue=${filterValue}`);
       return response.data || ([] as orderTypes[]);
     },
     {
@@ -44,9 +51,9 @@ export default function OrderPage() {
         {...{
           ordersToDelete,
           setOrdersToDelete,
-          searchValue,
           setSearchValue,
           refetchOrders,
+          setFilterValue
         }}
       />
     </>

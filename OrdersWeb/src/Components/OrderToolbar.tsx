@@ -46,7 +46,6 @@ export default function OrderToolbar(props: IProps) {
             <Typography
               sx={{
                 fontWeight: "bold",
-                fontStyle: "italic",
                 fontSize: 20,
               }}
             >

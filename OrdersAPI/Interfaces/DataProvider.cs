@@ -19,16 +19,29 @@ namespace API.Interfaces
             _context = context;
             _mapper = mapper;
         }
-        public IEnumerable<Projections.Order> GetData()
+        public IEnumerable<Projections.Order> GetData(string filterValue)
         {
             var modelData = _context.Orders.AsNoTracking().ToList();
+            switch(filterValue){
+                case "orderID_desc":
+                    modelData = modelData.OrderByDescending(x => x.OrderID).ToList();
+                    break;
+                case "createdDate":
+                    modelData = modelData.OrderBy(x => x.CreatedDate).ToList();
+                    break;
+                case "createdDate_desc":
+                    modelData = modelData.OrderByDescending(x => x.CreatedDate).ToList();
+                    break;
+                default:
+                    modelData = modelData.OrderBy(x => x.OrderID).ToList();
+                    break;
+            }
             return _mapper.Map<List<Models.Order>, List<Projections.Order>>(modelData); //maps all DTO models to projection model via constructor
 
         }
 
         public IEnumerable<Projections.Order> FindData(string searchValue)
         {
-            //add EF find by P
             try
             {
                 int orderID = Int32.Parse(searchValue);
@@ -52,7 +65,6 @@ namespace API.Interfaces
 
         public Projections.Order CreateOrder(Order order)
         {
-            //add INSERT INTO EF
             _context.Add(new Models.Order
             {
                 OrderType = (OrderType)Enum.Parse(typeof(OrderType), order.OrderType),
@@ -66,7 +78,6 @@ namespace API.Interfaces
 
         public int DeleteOrders(List<int> OrderIDs)
         {
-            //add EF DELETE
             var orders = _context.Orders.Where(a => OrderIDs.Contains(a.OrderID));
             _context.Orders.RemoveRange(orders);
             return _context.SaveChanges();
